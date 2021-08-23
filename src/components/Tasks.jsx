@@ -4,7 +4,7 @@ import 'react-day-picker/lib/style.css';
 import dateFnsFormat from 'date-fns/format';
 import isAfter from "date-fns/isAfter";
 import isBefore from "date-fns/isBefore";
-import addDays from "date-fns/esm/fp/addDays/index.js";
+import addDays from "date-fns/addDays";
 import isToday from "date-fns/isToday";
 
 const FORMAT = "dd/MM/yyyy";
@@ -31,7 +31,7 @@ const AddTask = ({onCancel,onAddTask})=>{
             }>Cancel</button>
           </div>
         <div className="icon-container">
-          <DayPickerInput onDayChange={(day)=>setDate(day)} placeholder={`${(dateFnsFormat(new Date(),FORMAT))}`}
+          <DayPickerInput className="DayPicker" onDayChange={(day)=>setDate(day)} placeholder={`${(dateFnsFormat(new Date(),FORMAT))}`}
            formatDate={formatDate}
            format={FORMAT}
            dayPickerProps={{
@@ -55,21 +55,28 @@ const TASKS_MAPPING = {
 const TaskItems = ({selected,tasks})=>{
    let tasksToRender = [...tasks];
    if(selected==="NEXT_7"){
-       tasksToRender= tasksToRender.filter((task)=>{
-           return isAfter(task.date,new Date()) &&
-           isBefore(task.date,addDays(new Date(),7))
-       })     
+       tasksToRender= tasksToRender.filter((task)=>
+            isAfter(task.date,new Date()) && isBefore(task.date,addDays(new Date(),7)))     
+      
    }
    if(selected==="TODAY"){
     tasksToRender= tasksToRender.filter((task)=>{
         return isToday(task.date)
     })
     }
-    return tasksToRender.map((task)=>{
-        return <p>
-            {task.text}  {dateFnsFormat(new Date(task.date),FORMAT)}{" "}
-        </p>
-    })
+    return (<div className='task-items-container'>
+        {tasksToRender.map((task)=>{
+            return(<div className="task-item">
+                 <p>
+                     {task.text}  
+                </p>
+                <p>
+                {dateFnsFormat(new Date(task.date),FORMAT)}{" "}
+                </p>
+             </div>)})
+        }
+        </div>)
+    
         
     
 

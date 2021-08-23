@@ -5,17 +5,17 @@ import {BsFillInboxesFill} from "react-icons/bs";;
 
 
 
-const SideBar = ({selectedTab,setSelectedTab})=>{
+const SideBar = ({selected,setSelectedTab})=>{
    return <div className="sidebar">
-       <div className="active" onClick={()=> setSelectedTab("INBOX")}>
+       <div className={selected==="INBOX" ? 'active' : null} onClick={()=> setSelectedTab("INBOX")}>
            <BsFillInboxesFill className="icon"/>
            Inbox
        </div>
-       <div  onClick={()=> setSelectedTab("TODAY")}>
+       <div className={selected==="TODAY" ? 'active' : null} onClick={()=> setSelectedTab("TODAY")}>
            <MdToday className="icon"/>
            Today
        </div>
-       <div onClick={()=> setSelectedTab("NEXT_7")}>
+       <div  className={selected==="NEXT_7" ? 'active' : null} onClick={()=> setSelectedTab("NEXT_7")}>
            <FaRegCalendar className="icon"/>
            Next 7 days
        </div>
