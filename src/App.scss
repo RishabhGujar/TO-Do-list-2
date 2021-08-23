@@ -1,0 +1,104 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,900&display=swap");
+html {
+  box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+body {
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+  font-family: "Roboto", sans-serif;
+  color: #202020;
+  background-color: #fafafa;
+}
+.header {
+  border-bottom: solid 10px grey;
+  background-color: black;
+  height: 44px;
+  width: 100%;
+  nav {
+    height: 100%;
+    max-width: 922px;
+    display: flex;
+    align-items: center;
+    margin: auto;
+  }
+  margin-bottom: 15px;
+}
+.sidebar {
+  user-select: none;
+  width: 266px;
+  height: 100vh;
+  padding-top: 74px;
+  border-right: 1px solid grey;
+  background-color: lightgrey;
+  border-radius: 15px;
+  div {
+    margin-bottom: 10px;
+    cursor: pointer;
+    padding: 15px;
+    &.active {
+      background-color: grey;
+      border-radius: 15px;
+    }
+    .icon {
+      margin-right: 10px;
+    }
+  }
+}
+.icon-header {
+  color: white;
+}
+.content {
+  display: flex;
+  max-width: 922px;
+  margin: auto;
+}
+.tasks {
+  background-color: grey;
+  border-radius: 15px;
+  padding-left: 15px;
+  width: calc(922px - 266px);
+  add-task-btn {
+    cursor: pointer;
+    .plus {
+      color: red;
+      font-size: 18px;
+    }
+    .add-task-text {
+      font-size: 14px;
+      margin-left: 15px;
+    }
+  }
+  .add-task-dialog {
+    margin-top: 10px;
+    input {
+      width: calc(900px - 266px);
+      height: 30px;
+      border-radius: 5px;
+    }
+  }
+}
+
+.add-btn {
+  background-color: black;
+  color: white;
+  border-radius: 15px;
+  font-weight: bold;
+  &:disabled {
+    background-color: gray;
+  }
+  &:active {
+    transform: scale(0.9);
+  }
+}
+.cancel-btn {
+  background-color: red;
+  color: white;
+  border-radius: 15px;
+  font-weight: bold;
+}
